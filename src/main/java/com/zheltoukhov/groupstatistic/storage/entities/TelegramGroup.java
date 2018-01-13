@@ -1,19 +1,39 @@
 package com.zheltoukhov.groupstatistic.storage.entities;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.bson.types.ObjectId;
+import org.mongodb.morphia.annotations.Entity;
+import org.mongodb.morphia.annotations.Id;
 
+@Entity("telegram_group")
 public class TelegramGroup {
-    private final Long chatId;
+    @Id
+    private ObjectId objectId;
+    private Long chatId;
     private String name;
+    private Boolean needUpdateFile;
 
     public TelegramGroup(Long chatId, String name) {
         this.chatId = chatId;
         this.name = name;
     }
 
+    public TelegramGroup() {
+    }
+
+    public ObjectId getObjectId() {
+        return objectId;
+    }
+
+    public void setObjectId(ObjectId objectId) {
+        this.objectId = objectId;
+    }
+
     public Long getChatId() {
         return chatId;
+    }
+
+    public void setChatId(Long chatId) {
+        this.chatId = chatId;
     }
 
     public String getName() {
@@ -22,6 +42,14 @@ public class TelegramGroup {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Boolean getNeedUpdateFile() {
+        return needUpdateFile;
+    }
+
+    public void setNeedUpdateFile(Boolean needUpdateFile) {
+        this.needUpdateFile = needUpdateFile;
     }
 
     @Override

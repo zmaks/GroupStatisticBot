@@ -2,6 +2,7 @@ package com.zheltoukhov.groupstatistic;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 public class ConfigProperties {
@@ -10,12 +11,10 @@ public class ConfigProperties {
     private static Properties properties;
 
     static  {
-        String rootPath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
-        String configPath = rootPath + PROPERTIES_FILE_NAME;
 
         properties = new Properties();
-        try {
-            properties.load(new FileInputStream(configPath));
+        try (InputStream resourceStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(PROPERTIES_FILE_NAME)) {
+            properties.load(resourceStream);
         } catch (IOException e) {
             e.printStackTrace();
         }

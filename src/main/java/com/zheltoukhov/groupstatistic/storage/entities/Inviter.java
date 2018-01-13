@@ -1,11 +1,20 @@
 package com.zheltoukhov.groupstatistic.storage.entities;
 
+import org.bson.types.ObjectId;
+import org.mongodb.morphia.annotations.Entity;
+import org.mongodb.morphia.annotations.Id;
+import org.mongodb.morphia.annotations.Property;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity("inviter")
 public class Inviter {
-    private final Integer userId;
-    private final Long groupId;
+    @Id
+    private ObjectId objectId;
+    private Integer userId;
+    @Property("group_chat_id")
+    private Long groupId;
     private String userName;
     private String fullName;
     private List<Invite> invites;
@@ -15,6 +24,25 @@ public class Inviter {
         this.groupId = groupId;
         this.userName = userName;
         this.fullName = fullName;
+    }
+
+    public Inviter() {
+    }
+
+    public ObjectId getObjectId() {
+        return objectId;
+    }
+
+    public void setObjectId(ObjectId objectId) {
+        this.objectId = objectId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public void setGroupId(Long groupId) {
+        this.groupId = groupId;
     }
 
     public Integer getUserId() {
@@ -51,6 +79,10 @@ public class Inviter {
 
     public List<Invite> getInvites() {
         return invites;
+    }
+
+    public void setInvites(List<Invite> invites) {
+        this.invites = invites;
     }
 
     public Long getGroupId() {

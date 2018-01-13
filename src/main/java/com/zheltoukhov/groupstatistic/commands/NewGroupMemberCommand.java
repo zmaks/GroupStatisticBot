@@ -28,7 +28,7 @@ public class NewGroupMemberCommand extends AbstractBotCommand {
 
         TelegramGroup group = getTelegramGroup(groupChat);
 
-        Inviter inviter = inviterTelegramUser == null ?
+        Inviter inviter = inviterTelegramUser.getId().equals(invitedTelegramUsers.get(0).getId()) ?
                 getByLinkInviter(groupChat.getInviteLink(), group.getChatId()) :
                 getUserInviter(inviterTelegramUser, group.getChatId());
 
@@ -40,6 +40,8 @@ public class NewGroupMemberCommand extends AbstractBotCommand {
         inviter.addInvites(invites);
         storage.storeInviter(inviter);
 
+        group.setNeedUpdateFile(true);
+        storage.storeGroup(group);
         return true;
     }
 
@@ -47,7 +49,7 @@ public class NewGroupMemberCommand extends AbstractBotCommand {
         TelegramGroup telegramGroup = storage.getGroup(groupChat.getId());
 
         if (telegramGroup == null) {
-            telegramGroup = new TelegramGroup(-1*groupChat.getId(), groupChat.getTitle());
+            telegramGroup = new TelegramGroup(groupChat.getId(), groupChat.getTitle());
             telegramGroup = storage.storeGroup(telegramGroup);
         }
 

@@ -14,14 +14,14 @@ public abstract class AbstractStatisticFileHandler implements StatisticFileHandl
         new File(path).mkdirs();
     }
 
-    protected File getFile(TelegramGroup group) {
+    protected String getFileName(TelegramGroup group) {
         StringBuilder nameBuilder = new StringBuilder();
         nameBuilder
-                .append(ConfigProperties.getProperty("file-path")).append("/")
+                //.append(ConfigProperties.getProperty("file-path")).append("/")
                 .append(group.getName()).append("_")
-                .append(group.getChatId())
+                .append(-1*group.getChatId())
                 .append(getSuffix());
-        return new File(nameBuilder.toString());
+        return nameBuilder.toString();
     }
 
     protected abstract String getSuffix();

@@ -25,6 +25,6 @@ public class FileUpdaterJob implements GroupStatisticJob {
     }
 
     private static long getFileUpdatesDelay() {
-        return Long.parseLong(ConfigProperties.getProperty("file-updates-delay"));
+        return Long.parseLong(ConfigProperties.getProperty("file.updates-period"));
     }
 }

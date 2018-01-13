@@ -1,13 +1,19 @@
 package com.zheltoukhov.groupstatistic.storage.entities;
 
+import org.bson.types.ObjectId;
+import org.mongodb.morphia.annotations.Entity;
+import org.mongodb.morphia.annotations.Id;
+
 import java.util.Date;
 
+@Entity("invite")
 public class Invite {
-
-    private final Integer invitedUserId;
-    private final String invitedUserName;
-    private final String invitedFullName;
-    private final Date invitedWhen;
+    @Id
+    private ObjectId objectId;
+    private Integer invitedUserId;
+    private String invitedUserName;
+    private String invitedFullName;
+    private Date invitedWhen;
 
     public Invite(Integer invitedUserId, String invitedUserName, String invitedFullName, Date invitedWhen) {
         this.invitedUserId = invitedUserId;
@@ -16,20 +22,47 @@ public class Invite {
         this.invitedWhen = invitedWhen;
     }
 
+    public Invite() {
+    }
+
+    public ObjectId getObjectId() {
+        return objectId;
+    }
+
+    public void setObjectId(ObjectId objectId) {
+        this.objectId = objectId;
+    }
+
     public Integer getInvitedUserId() {
         return invitedUserId;
+    }
+
+    public void setInvitedUserId(Integer invitedUserId) {
+        this.invitedUserId = invitedUserId;
     }
 
     public String getInvitedUserName() {
         return invitedUserName;
     }
 
+    public void setInvitedUserName(String invitedUserName) {
+        this.invitedUserName = invitedUserName;
+    }
+
     public String getInvitedFullName() {
         return invitedFullName;
     }
 
+    public void setInvitedFullName(String invitedFullName) {
+        this.invitedFullName = invitedFullName;
+    }
+
     public Date getInvitedWhen() {
         return invitedWhen;
+    }
+
+    public void setInvitedWhen(Date invitedWhen) {
+        this.invitedWhen = invitedWhen;
     }
 
     @Override

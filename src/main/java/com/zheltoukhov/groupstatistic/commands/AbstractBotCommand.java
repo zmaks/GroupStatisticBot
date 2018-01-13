@@ -10,7 +10,7 @@ public abstract class AbstractBotCommand implements BotCommand {
     protected StatisticStorage storage = StatisticStorageFactory.getStatisticStorage();
 
     protected static final Integer INVITED_BY_LINK_DEFAULT_ID = 1;
-    protected static final String INVITED_BY_LINK_DEFAULT_NAME = ConfigProperties.getProperty("by-link-name");
+    protected static final String INVITED_BY_LINK_DEFAULT_NAME = ConfigProperties.getProperty("file.by-link-name");
 
     protected String getUserName(User user) {
         StringBuilder nameBuilder = new StringBuilder();
